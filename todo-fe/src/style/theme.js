@@ -20,6 +20,11 @@ export const lightTheme = createMuiTheme({
         }, // change
         success: {
             main: '#53C289'
+        },
+        text: {
+            primary: '#333333',
+            secondary: '#4D4D4D',
+            disabled: '#8D8D8D'
         }
     }
 });

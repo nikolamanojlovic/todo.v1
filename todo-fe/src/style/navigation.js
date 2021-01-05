@@ -1,4 +1,4 @@
-const { makeStyles, colors } = require("@material-ui/core");
+import { makeStyles } from "@material-ui/core";
 
 export const useNavigationStyles = makeStyles((theme) => ({
     navigationButtons: {
