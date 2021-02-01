@@ -1,20 +1,27 @@
 import './App.css';
 import { ThemeProvider } from '@material-ui/core';
-import { darkTheme, lightTheme } from './style/theme';
+import { lightTheme } from './style/theme';
 import Header from './components/Navigation';
-import { useState } from 'react';
-import SignInPage from "./pages/SignInPage";
+import { createContext, useContext } from 'react';
+import AuthenticationPage from "./pages/AuthenticationPage";
+
+const ThemeContext = createContext(lightTheme);
+const UserContext = createContext(undefined);
 
 function App() {
-  const [isLightTheme] = useState(true);
-  const theme = isLightTheme ? lightTheme : darkTheme;
+
+  const currentTheme = useContext(ThemeContext);
+  const user = useContext(UserContext);
 
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        {/* <Header isLightTheme={isLightTheme} theme={theme}/> */}
-        <SignInPage/>
-      </ThemeProvider>
+      <UserContext.Provider>
+        <ThemeContext.Provider>
+          <ThemeProvider theme={currentTheme}>
+            {user ? <Header /> : <AuthenticationPage />}
+          </ThemeProvider>
+        </ThemeContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }

@@ -1,11 +1,10 @@
-import { AppBar, IconButton, MenuList, MenuItem, Paper, Toolbar, Typography, InputBase } from "@material-ui/core";
+import { AppBar, IconButton, Toolbar, Typography, InputBase } from "@material-ui/core";
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
-import Brightness3RoundedIcon from '@material-ui/icons/Brightness3Rounded';
-import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
 import PowerSettingsNewRoundedIcon from '@material-ui/icons/PowerSettingsNewRounded';
 import { useNavigationStyles } from "../style/navigation";
 
-export default function Header(isLightTheme, theme) {
+export default function Header(theme) {
     const classes = useNavigationStyles(theme);
 
     return (
@@ -20,10 +19,10 @@ export default function Header(isLightTheme, theme) {
                 </div>
                 <div>
                     <IconButton className={classes.navigationButtons}>
-                        {isLightTheme ? <Brightness3RoundedIcon /> : <Brightness7RoundedIcon />}
+                        <Brightness4Icon />
                     </IconButton>
                     <IconButton className={classes.navigationButtons}>
-                        <PowerSettingsNewRoundedIcon/>
+                        <PowerSettingsNewRoundedIcon />
                     </IconButton>
                 </div>
             </Toolbar>

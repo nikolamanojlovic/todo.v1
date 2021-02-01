@@ -4,20 +4,25 @@ export const useSingInStyles = makeStyles((theme) => ({
     root: {
         minWidth: '100%',
         minHeight: '100%',
-        // backgroundImage: "url('https://www.cv-library.co.uk/career-advice/wp-content/uploads/2018/06/What-is-it-like-working-in-IT.jpg')",
-        // backgroundRepeat: 'no-repeat',
-        // backgroundPosition: 'center',
-        // backgroundSize: 'cover',
-        // filter: 'grayscale(100%) opacity(50%)',
-        // overflow: 'hidden',
-        // zIndex: '-10'
+        
+        display: 'flex',
+        display: '-ms-flexbox',
+        display: '-webkit-flex',
+
+        alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: theme.palette.primary.main
+    },
+    content: {
+        textAlign: 'center',
     },
     logo: {
         fontFamily: "'Fredoka One', cursive",
         fontWeight: 'bold',
+        marginBottom: '0.5em',
         color: theme.palette.secondary.main
     },
-    signInForm: {
+    authenticationForm: {
+        paddingBottom: '3em'
     }
 }));
