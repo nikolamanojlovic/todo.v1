@@ -23,6 +23,8 @@ export const useSingInStyles = makeStyles((theme) => ({
         color: theme.palette.secondary.main
     },
     authenticationForm: {
-        paddingBottom: '3em'
+        height: '600px',
+        width: '300px',
+        padding: '3em'
     }
 }));

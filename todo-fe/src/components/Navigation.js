@@ -3,9 +3,11 @@ import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import PowerSettingsNewRoundedIcon from '@material-ui/icons/PowerSettingsNewRounded';
 import { useNavigationStyles } from "../style/navigation";
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/contexts";
 
 export default function Header(theme) {
-    const classes = useNavigationStyles(theme);
+    const classes = useNavigationStyles(useContext(ThemeContext));
 
     return (
         <AppBar position={'static'}>

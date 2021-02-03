@@ -1,23 +1,20 @@
 import './App.css';
 import { ThemeProvider } from '@material-ui/core';
-import { lightTheme } from './style/theme';
 import Header from './components/Navigation';
-import { createContext, useContext } from 'react';
+import { useContext } from 'react';
 import AuthenticationPage from "./pages/AuthenticationPage";
-
-const ThemeContext = createContext(lightTheme);
-const UserContext = createContext(undefined);
+import { ThemeContext, UserContext } from './contexts/contexts';
 
 function App() {
 
-  const currentTheme = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
   const user = useContext(UserContext);
 
   return (
     <div className="App">
-      <UserContext.Provider>
-        <ThemeContext.Provider>
-          <ThemeProvider theme={currentTheme}>
+      <UserContext.Provider value={user}>
+        <ThemeContext.Provider value={theme}>
+          <ThemeProvider theme={theme}>
             {user ? <Header /> : <AuthenticationPage />}
           </ThemeProvider>
         </ThemeContext.Provider>
