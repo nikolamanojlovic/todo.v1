@@ -20,7 +20,10 @@ export const useSingInStyles = makeStyles((theme) => ({
         fontFamily: "'Fredoka One', cursive",
         fontWeight: 'bold',
         marginBottom: '0.5em',
-        color: theme.palette.secondary.main
+        color: theme.palette.secondary.main,
+        msUserSelect: 'none',
+        WebkitUserSelect: 'none',
+        userSelect: 'none'
     },
     authenticationForm: {
         height: '400px',
