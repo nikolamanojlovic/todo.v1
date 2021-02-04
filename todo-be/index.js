@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
     res.send('aa  World!')
 });
 
-app.post('/authenticate', (req, res) => {
+app.post('/v1/authenticate', (req, res) => {
     authenticationController.authenticate(req, res);
 });
 

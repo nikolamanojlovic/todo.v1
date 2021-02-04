@@ -23,7 +23,7 @@ export const useSingInStyles = makeStyles((theme) => ({
         color: theme.palette.secondary.main
     },
     authenticationForm: {
-        height: '600px',
+        height: '400px',
         width: '300px',
         padding: '3em'
     }

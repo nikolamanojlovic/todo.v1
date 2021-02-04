@@ -1,5 +1,7 @@
 import { Button, ButtonGroup, FormControl, Paper, TextField, Typography } from "@material-ui/core";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ThemeContext } from "../contexts/contexts";
+import { useFormStyles } from "../style/forms";
 
 export default function AuthenticationForm(classes) {
 
@@ -7,35 +9,38 @@ export default function AuthenticationForm(classes) {
 
   return (
     <div>
-      <ButtonGroup size='small'>
-        <Button color='primary' variant='outlined' disabled={login} onClick={(e) => { setLogin(!login) }}>Log In</Button>
-        <Button color='primary' variant='outlined' disabled={!login} onClick={(e) => { setLogin(!login) }}>Register</Button>
+      <ButtonGroup className={classes.loginRegisterSwitch} size='small'>
+        <Button color='primary' variant='contained' disabled={login} onClick={(e) => { setLogin(!login) }}>Log In</Button>
+        <Button color='primary' variant='contained' disabled={!login} onClick={(e) => { setLogin(!login) }}>Register</Button>
       </ButtonGroup>
-      {login ? <LogInForm /> : <SignInForm />}
+      {login ? <LogInForm /> : <RegisterForm />}
     </div>
 
   );
 }
 
 function LogInForm() {
+  const classes = useFormStyles(useContext(ThemeContext));
+
   return (
     <FormControl margin='normal'>
-      <TextField id='email' label='E-mail' />
-      <TextField id='password' label='Password' />
-      <Button color='primary' variant='outlined'>Log In</Button>
+      <TextField className={classes.input} id='email' label='E-mail' required/>
+      <TextField className={classes.input} id='password' label='Password' required/>
+      <Button className={classes.button} color='primary' variant='outlined'>Log In</Button>
     </FormControl>
   );
 }
 
-function SignInForm() {
+function RegisterForm() {
+  const classes = useFormStyles(useContext(ThemeContext));
+
   return (
-    <FormControl>
-      <TextField id='firstName' label='First name' />
-      <TextField id='lastName' label='Last name' />
-      <TextField id='email' label='E-mail' />
-      <TextField id='password' label='Password' />
-      <TextField id='confirmPassword' label='Confirm password' />
-      <Button color='primary' variant='outlined'>Register</Button>
+    <FormControl margin='normal'>
+      <TextField className={classes.input} id='firstName' label='First name' required/>
+      <TextField className={classes.input} id='lastName' label='Last name' required/>
+      <TextField className={classes.input} id='email' label='E-mail' required/>
+      <TextField className={classes.input} id='password' label='Password' required/>
+      <Button className={classes.button} color='primary' variant='outlined'>Register</Button>
     </FormControl>
   );
 }
