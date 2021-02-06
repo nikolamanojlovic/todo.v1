@@ -4,10 +4,16 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import PowerSettingsNewRoundedIcon from '@material-ui/icons/PowerSettingsNewRounded';
 import { useNavigationStyles } from "../style/navigation";
 import { useContext } from "react";
-import { ThemeContext } from "../contexts/contexts";
+import { ThemeContext, UserContext } from "../contexts/contexts";
 
-export default function Header(theme) {
+const Header = () => {
     const classes = useNavigationStyles(useContext(ThemeContext));
+
+    const [ user, setUser ] = useContext(UserContext);
+
+    const handleLogOut = () => {
+        setUser(undefined);
+    }
 
     return (
         <AppBar position={'static'}>
@@ -23,7 +29,7 @@ export default function Header(theme) {
                     <IconButton className={classes.navigationButtons}>
                         <Brightness4Icon />
                     </IconButton>
-                    <IconButton className={classes.navigationButtons}>
+                    <IconButton className={classes.navigationButtons} onClick={() => handleLogOut()}>
                         <PowerSettingsNewRoundedIcon />
                     </IconButton>
                 </div>
@@ -31,3 +37,5 @@ export default function Header(theme) {
         </AppBar>
     );
 }
+
+export default Header;

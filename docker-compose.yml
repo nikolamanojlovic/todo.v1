@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+    mongodb:
+        build: ./todo-db/
+        ports: 
+            - "27017:27017"  

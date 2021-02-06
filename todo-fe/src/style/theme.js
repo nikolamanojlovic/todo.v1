@@ -13,6 +13,7 @@ export const lightTheme = createMuiTheme({
             main: '#F5CF66'
         },
         error: {
+            light: '#f5726b',
             main: '#F23B41'
         },
         info: {

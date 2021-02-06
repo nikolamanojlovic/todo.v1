@@ -9,5 +9,10 @@ export const useFormStyles = makeStyles((theme) => ({
     },
     button: {
         marginTop: '2em'
+    },
+    error: {
+        marginTop: '1em',
+        color: theme.palette.error.main,
+        fontWeight: 'bold'
     }
 }));

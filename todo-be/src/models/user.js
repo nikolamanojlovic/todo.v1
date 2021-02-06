@@ -22,6 +22,6 @@ userSchema.pre('save', async function name(next) {
     return next();
 });
 
-let users = mongoose.model('User', userSchema, 'users');
+var UserModel = mongoose.model('User', userSchema, 'users');
 
-export default users;
+export default UserModel;
