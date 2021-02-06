@@ -19,6 +19,7 @@ export const useSingInStyles = makeStyles((theme) => ({
     logo: {
         fontFamily: "'Fredoka One', cursive",
         fontWeight: 'bold',
+        textShadow: '2px 2px 10px rgba(20,20,20,0.2)',
         marginBottom: '0.5em',
         color: theme.palette.secondary.main,
         msUserSelect: 'none',
@@ -28,6 +29,7 @@ export const useSingInStyles = makeStyles((theme) => ({
     authenticationForm: {
         height: '400px',
         width: '300px',
-        padding: '3em'
+        padding: '3em',
+        boxShadow: '2px 2px 10px rgba(20,20,20,0.2)'
     }
 }));

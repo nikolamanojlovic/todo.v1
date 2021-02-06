@@ -17,7 +17,7 @@ const Header = () => {
 
     return (
         <AppBar position={'static'}>
-            <Toolbar>
+            <Toolbar className={classes.root}>
                 <Typography className={classes.logo} variant='body1'>
                     My TODOs
                 </Typography>

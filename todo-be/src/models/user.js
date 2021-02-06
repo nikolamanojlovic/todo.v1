@@ -1,5 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 import Bcrypt from "bcryptjs";
+import todosSchema from "./todos";
 
 const userSchema = new Schema({
     firstName: String,
@@ -12,7 +13,8 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    todos: [todosSchema]
 });
 
 userSchema.pre('save', async function name(next) {

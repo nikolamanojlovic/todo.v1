@@ -1,6 +1,9 @@
 import { makeStyles } from "@material-ui/core";
 
 export const useNavigationStyles = makeStyles((theme) => ({
+    root: {
+        boxShadow: '2px 2px 10px rgba(20,20,20,0.2)'
+    },
     navigationButtons: {
         color: theme.palette.secondary.main
     },
