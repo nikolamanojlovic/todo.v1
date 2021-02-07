@@ -1,6 +1,7 @@
 import express from 'express';
 import config from './src/config/config';
 import AuthenticationController from './src/controllers/authenticationController';
+import TodosController from './src/controllers/todosController';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
@@ -14,6 +15,7 @@ mongoose.connect("mongodb://" + config.db.host + ":" + config.db.port + "/" + co
 
 
 const authenticationController = new AuthenticationController();
+const todosController = new TodosController();
 
 // Enable CORS for all
 app.use(cors());
@@ -30,5 +32,14 @@ app.post('/v1/authenticate/login', (req, res) => {
 app.post('/v1/authenticate/register', (req, res) => {
     authenticationController.register(req, res);
 });
+
+app.post('/v1/todos/create', (req, res) => {
+    todosController.createTodosList(req, res);
+});
+
+app.post('/v1/todos/delete', (req, res) => {
+    todosController.deleteTodosList(req, res);
+});
+
 
 app.listen(config.app.port, () => console.log("Server running on port", config.app.port));
