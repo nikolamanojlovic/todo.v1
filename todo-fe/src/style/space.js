@@ -79,13 +79,14 @@ export const useSpaceStyles = makeStyles((theme) => ({
     },
     todoListTasks: {
         maxHeight: '37em',
+        minHeight: '37em',
         marginLeft: '1em',
         flexWrap: 'wrap',
         overflowY: 'scroll'
     },
     task: {
-        width: '70%',
-        margin: '0.5em auto',
+        width: '95%',
+        margin: '0.5em 0',
         backgroundColor: theme.palette.primary.main,
 
         display: '-ms-flexbox',
@@ -98,13 +99,13 @@ export const useSpaceStyles = makeStyles((theme) => ({
         alignItems: 'center'
     },
     taskDescription: {
-       display: 'inline-block',
-       marginLeft: '1em',
-       flexGrow: 1,
-       color: theme.palette.secondary.main,
+        display: 'inline-block',
+        marginLeft: '1em',
+        flexGrow: 1,
+        color: theme.palette.secondary.main,
     },
     taskBtn: {
-        color: theme.palette.secondary.main,
+        color: theme.palette.secondary.main
     },
 
     // LISTS: 

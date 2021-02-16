@@ -25,13 +25,14 @@ const Space = () => {
     };
 
     const handleNewTask = () => {
+        var tasks = choosenTodo.tasks;
         var newTask = {
             id: choosenTodo.tasks.length + 1,
             description: 'New task',
             completed: false
         };
-        choosenTodo.tasks.push(newTask)
-        setChoosenTodo({ ...choosenTodo, tasks: choosenTodo.tasks });
+        tasks.push(newTask)
+        setChoosenTodo({ ...choosenTodo, tasks: tasks });
     }
 
     const renderEmptyTodoEditor = () => {
@@ -43,14 +44,38 @@ const Space = () => {
     }
 
     const renderTasks = () => {
+
+        const handleRemoveTask = (e) => {
+            var tasks = choosenTodo.tasks.filter((el) => el.id != e.currentTarget.value);
+            setChoosenTodo({ ...choosenTodo, tasks: tasks });
+        }
+
+        const handleCompletedTask = (e) => {
+            var index = choosenTodo.tasks.findIndex((el) => el.id == e.currentTarget.value);
+            var tasks = choosenTodo.tasks;
+
+            tasks[index] = { ...tasks[index], completed: true }
+
+            setChoosenTodo({ ...choosenTodo, tasks: tasks });
+        }
+
+        const handleChange = (e) => {
+            var index = choosenTodo.tasks.findIndex((el) => el.id == e.currentTarget.id);
+            var tasks = choosenTodo.tasks;
+
+            tasks[index] = { ...tasks[index], description: e.currentTarget.value }
+
+            setChoosenTodo({ ...choosenTodo, tasks: tasks });
+        }
+
         return (
             <div className={classes.todoListTasks}>
                 {
                     choosenTodo.tasks.map((task) =>
                         <Paper className={classes.task} style={task.completed ? { backgroundColor: theme.palette.success.main } : {}}>
-                            <InputBase className={classes.taskDescription} value={task.description} />
-                            {task.completed ? <Fragment /> : <IconButton className={classes.taskBtn} ><CheckCircleOutlineRoundedIcon /></IconButton>}
-                            <IconButton className={classes.taskBtn}>
+                            <InputBase className={classes.taskDescription} value={task.description} style={task.completed ? { color: theme.palette.secondary.main } : {}} id={task.id} onChange={(e) => handleChange(e)} disabled={task.completed} />
+                            {task.completed ? <Fragment /> : <IconButton className={classes.taskBtn} value={task.id} onClick={(e) => handleCompletedTask(e)}><CheckCircleOutlineRoundedIcon /></IconButton>}
+                            <IconButton className={classes.taskBtn} value={task.id} onClick={(e) => { handleRemoveTask(e) }}>
                                 <HighlightOffRoundedIcon />
                             </IconButton>
                         </Paper>
