@@ -8,7 +8,7 @@ const todoSchema = new Schema({
 
 const todosSchema = new Schema({
     id: Number,
-    heading: String,
+    headline: String,
     date: Date,
     tasks: [todoSchema]
 });

@@ -112,7 +112,20 @@ export const useSpaceStyles = makeStyles((theme) => ({
     todos: {
         WebkitFlexGrow: 1,
         flexGrow: 1,
-        textAlign: 'center'
+        padding: '1em',
+    
+        textAlign: 'center',
+        alignItems: 'center',
+
+        display: 'flex',
+
+        flexDirection: 'column',
+        msFlexDirection: 'column',
+        WebkitFlexDirection: 'column',
+    },
+    todoBtn: {
+        margin: '0.5em 0',
+        width: '100%',
     },
     control: {
         display: 'block',

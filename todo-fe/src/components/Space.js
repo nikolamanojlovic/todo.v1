@@ -7,6 +7,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import { useFormStyles } from "../style/forms";
 import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded';
 import HighlightOffRoundedIcon from '@material-ui/icons/HighlightOffRounded';
+import { saveTodosList } from "../services/todosService";
 
 const Space = () => {
     const classes = useSpaceStyles(useContext(ThemeContext));
@@ -14,14 +15,22 @@ const Space = () => {
 
     const [choosenTodo, setChoosenTodo] = useState(undefined);
 
-    const user = useContext(UserContext);
+    const [user, setUser] = useContext(UserContext);
     const theme = useContext(ThemeContext);
 
     const handleNew = () => {
-        setChoosenTodo({
+        var newTodos = user.todos;
+        var newTodo = {
+            id: user.todos.length + 1,
             headline: 'Untitled',
             tasks: []
-        });
+        };
+        newTodos.push(newTodo);
+
+        setUser({ ...user, todos: newTodos });
+
+        var index = user.todos.findIndex((el) => el.id == newTodo.id);
+        setChoosenTodo(user.todos[index]);
     };
 
     const handleNewTask = () => {
@@ -85,11 +94,31 @@ const Space = () => {
         );
     }
 
+    const handleHeadlineChange = (e) => {
+        var todos = user.todos;
+        var index = user.todos.findIndex((el) => el.id == e.currentTarget.id);
+
+        todos[index] = { ...todos[index], headline: e.target.value };
+
+        setUser({ ...user, todos: todos });
+        setChoosenTodo(user.todos[index]);
+    }
+
+    const saveToDoList = (e) => {
+        saveTodosList(user.email, choosenTodo.id, choosenTodo.headline, choosenTodo.tasks)
+            .then(response => {
+                setUser(response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    }
+
     const renderTodoEditor = () => {
         return (
             <div className={classes.editor}>
                 <div className={classes.todoListHeadline}>
-                    <InputBase className={classes.todoListHeadlineInput} value={choosenTodo.headline} onChange={(e) => setChoosenTodo({ ...choosenTodo, headline: e.target.value })} required />
+                    <InputBase id={choosenTodo.id} className={classes.todoListHeadlineInput} value={choosenTodo.headline} onChange={(e) => handleHeadlineChange(e)} required />
                     <Divider className={classes.divider} />
                 </div>
                 {renderTasks()}
@@ -98,17 +127,27 @@ const Space = () => {
                         <AddIcon />
                     </IconButton>
                     <IconButton className={classes.controlButtons}>
-                        <SaveIcon />
+                        <SaveIcon onClick={(e) => saveToDoList(e)} />
                     </IconButton>
                 </div>
             </div>
         );
     }
 
+    const changeTodoList = (e) => {
+        var index = user.todos.findIndex((el) => el.id == e.currentTarget.value);
+        setChoosenTodo(user.todos[index]);
+    }
+
     return (
         <Paper className={classes.root}>
             <div className={classes.lists}>
                 <div className={classes.todos}>
+                    {
+                        user.todos.map((todo) => <Button value={todo.id} variant={(choosenTodo && todo.id == choosenTodo.id) ? 'contained' : 'outlined'} color='secondary'
+                            className={classes.todoBtn} style={(choosenTodo && todo.id == choosenTodo.id) ? { backgroundColor: theme.palette.secondary.main, color: theme.palette.primary.main } : {}}
+                            onClick={(e) => changeTodoList(e)} disabled={choosenTodo && todo.id == choosenTodo.id}>{todo.headline}</Button>)
+                    }
                 </div>
                 <div className={classes.control}>
                     <Button className={classes.createBtn} variant='contained' color='secondary' startIcon={<AddIcon />} onClick={() => handleNew()}>Create list</Button>

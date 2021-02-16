@@ -33,13 +33,8 @@ app.post('/v1/authenticate/register', (req, res) => {
     authenticationController.register(req, res);
 });
 
-app.post('/v1/todos/create', (req, res) => {
-    todosController.createTodosList(req, res);
+app.post('/v1/todos/save', (req, res) => {
+    todosController.createOrUpdateTodosList(req, res);
 });
-
-app.post('/v1/todos/delete', (req, res) => {
-    todosController.deleteTodosList(req, res);
-});
-
 
 app.listen(config.app.port, () => console.log("Server running on port", config.app.port));

@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { API_TODOS_ENDPOINT } from '../constants/constants';
 
-export function createTodosList(email, headline) {
-    return axios.post(API_TODOS_ENDPOINT + '/crate', {
+export function saveTodosList(email, id, headline, tasks) {
+    return axios.post(API_TODOS_ENDPOINT + '/save', {
         email: email,
-        headline: headline
+        todo: {
+            id: id,
+            headline: headline,
+            tasks: tasks
+        }
     });
 }
